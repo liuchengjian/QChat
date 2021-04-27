@@ -1,4 +1,4 @@
-package com.liucj.common;
+package com.liucj.common.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.widget.convention.PlaceHolderView;
 
 import java.io.Serializable;

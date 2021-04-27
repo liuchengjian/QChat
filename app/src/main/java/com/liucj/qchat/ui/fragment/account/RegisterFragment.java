@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.liucj.common.BaseFragment;
+import com.liucj.common.fragment.BaseFragment;
 import com.liucj.qchat.R;
 
 import net.qiujuer.genius.ui.widget.Loading;

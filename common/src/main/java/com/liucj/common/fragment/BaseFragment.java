@@ -1,4 +1,4 @@
-package com.liucj.common;
+package com.liucj.common.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

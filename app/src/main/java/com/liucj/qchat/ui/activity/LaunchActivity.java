@@ -1,7 +1,6 @@
 package com.liucj.qchat.ui.activity;
 
 
-import android.accounts.Account;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
@@ -12,7 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.Property;
 import android.view.View;
 
-import com.liucj.common.BaseActivity;
+import com.liucj.common.activity.BaseActivity;
 import com.liucj.qchat.R;
 
 import net.qiujuer.genius.ui.compat.UiCompat;

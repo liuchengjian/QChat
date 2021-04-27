@@ -1,6 +1,6 @@
 package com.liucj.qchat.ui.activity;
 
-import com.liucj.common.BaseActivity;
+import com.liucj.common.activity.BaseActivity;
 import com.liucj.qchat.R;
 
 public class MainActivity extends BaseActivity {
