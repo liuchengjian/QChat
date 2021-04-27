@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Common</string>
+
+    <string name="action_add">action_add</string>
+    <string name="action_person">action_person</string>
+    <string name="label_submit">提交</string>
+    <string name="action_home">趣聊</string>
+    <string name="action_group">群聊</string>
+    <string name="action_contact">联系人</string>
+    <string name="action_my">我的</string>
+    <string name="action_follow">action_follow</string>
+    <string name="title_search">搜索</string>
+    <string name="prompt_empty">数据为空</string>
+    <string name="prompt_error">数据错误</string>
+    <string name="prompt_loading">数据加载中····</string>
+</resources>
