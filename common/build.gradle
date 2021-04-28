@@ -35,19 +35,19 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    api 'androidx.appcompat:appcompat:1.2.0'
+    api 'androidx.recyclerview:recyclerview:1.2.0'
+    api 'com.google.android.material:material:1.1.0'
     api "net.qiujuer.genius:ui:$rootProject.ext.geniusVersion"
     api "net.qiujuer.genius:res:$rootProject.ext.geniusVersion"
-    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleimageviewVersion"
+    api "de.hdodenhof:circleimageview:$rootProject.ext.circleimageviewVersion"
     api "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
-    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
-    implementation "com.yalantis:ucrop:$rootProject.ext.ucropVersion"
-    implementation "pub.devrel:easypermissions:$rootProject.ext.easyPMVersion"
-    implementation project(':factory')
-    implementation 'net.qiujuer.genius:kit-reflect:2.0.0'
+    api "com.yalantis:ucrop:$rootProject.ext.ucropVersion"
+    api "pub.devrel:easypermissions:$rootProject.ext.easyPMVersion"
+    api 'net.qiujuer.genius:kit-reflect:2.0.0'
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
 
 
 }

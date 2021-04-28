@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-
+def dbflow_version = "5.0.0-alpha2"
+def sqlcipher_version ="4.4.2"
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -25,8 +26,23 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation project(path: ':common')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${rootProject.ext.dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${rootProject.ext.dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.dbflowVersion}@aar"
 
+
+    // if only using Java, use this. If using Kotlin do NOT use this.
+//    annotationProcessor "com.github.agrosner.dbflow:processor:${dbflow_version}"
+//    // core set of libraries
+//    implementation "com.github.agrosner.dbflow:core:${dbflow_version}"
+//    implementation "com.github.agrosner.dbflow:lib:${dbflow_version}"
+//    implementation "com.github.agrosner.dbflow:lib:${dbflow_version}@aar"
+    // sql-cipher database encryption (optional)
+//    implementation "com.github.agrosner.dbflow:sqlcipher:${dbflow_version}"
+//    implementation "net.zetetic:android-database-sqlcipher:${sqlcipher_version}@aar"
 }

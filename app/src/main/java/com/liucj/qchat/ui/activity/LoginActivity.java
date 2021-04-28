@@ -86,4 +86,5 @@ public class LoginActivity extends BaseActivity implements AccountTrigger {
                 .replace(R.id.lay_container,fragment)
                 .commit();
     }
+
 }

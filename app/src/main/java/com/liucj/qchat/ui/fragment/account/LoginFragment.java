@@ -5,7 +5,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.liucj.common.fragment.BaseFragment;
+import com.liucj.common.utils.QUtils;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.activity.MainActivity;
 
 import net.qiujuer.genius.ui.widget.Loading;
 
@@ -51,5 +53,15 @@ public class LoginFragment extends BaseFragment {
         // 让AccountActivity进行界面切换
         mAccountTrigger.triggerView();
     }
-
+    @OnClick({R.id.btn_submit})
+    void onClick() {
+        String phone = mPhone.getText().toString();
+        String password = mPassword.getText().toString();
+        // 调用P层进行注册
+//        mPresenter.login(phone, password);
+        QUtils.makeText(getContext(),"登录成功");
+//        startActivity(new Intent(getContext(), MainActivity.class));
+        MainActivity.show(getActivity());
+        getActivity().finish();
+    }
 }
