@@ -1,11 +1,11 @@
 package com.liucj.factory;
 
-import com.dbflow5.config.FlowConfig;
-import com.dbflow5.config.FlowManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.liucj.common.Application;
 import com.liucj.common.DataSource;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

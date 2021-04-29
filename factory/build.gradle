@@ -33,14 +33,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // DBFlow
     implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-//    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${rootProject.ext.dbflowVersion}"
-//    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${rootProject.ext.dbflowVersion}"
-//    implementation "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.dbflowVersion}"
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${rootProject.ext.dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${rootProject.ext.dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.dbflowVersion}"
     // if only using Java, use this. If using Kotlin do NOT use this.
-    annotationProcessor "com.github.agrosner.dbflow:processor:${dbflow_version}"
-    // core set of libraries
-    implementation "com.github.agrosner.dbflow:core:${dbflow_version}"
-    implementation "com.github.agrosner.dbflow:lib:${dbflow_version}"
+//    annotationProcessor "com.github.agrosner.dbflow:processor:${dbflow_version}"
+//    // core set of libraries
+//    implementation "com.github.agrosner.dbflow:core:${dbflow_version}"
+//    implementation "com.github.agrosner.dbflow:lib:${dbflow_version}"
 //    implementation "com.github.agrosner.dbflow:lib:${dbflow_version}@aar"
     // sql-cipher database encryption (optional)
 //    implementation "com.github.agrosner.dbflow:sqlcipher:${dbflow_version}"
