@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Factory</string>
+    <string name="data_network_error">数据错误</string>
+    <string name="data_account_login_invalid_parameter">电话或密码为空</string>
+    <string name="data_account_register_invalid_parameter_mobile">电话不能为空</string>
+    <string name="data_account_register_invalid_parameter_name">姓名要大于2位</string>
+    <string name="data_account_register_invalid_parameter_password">密码要大于6位</string>
+    <string name="data_account_update_invalid_parameter">头像和详情不能为空</string>
+    <string name="data_upload_error">上传图片数据错误</string>
+</resources>
