@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.liucj.common.Application;
 import com.liucj.factory.Factory;
 import com.liucj.factory.db.User;
 import com.liucj.factory.net.api.AccountRspModel;
@@ -81,6 +80,9 @@ public class AccountUtil {
      */
     public static String getPushId() {
         return pushId;
+    }
+    public static String getPhone(){
+        return account;
     }
 
     /**

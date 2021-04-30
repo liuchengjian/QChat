@@ -4,9 +4,10 @@ import androidx.annotation.StringRes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.liucj.common.Application;
 import com.liucj.common.DataSource;
 import com.liucj.common.utils.QUtils;
+import com.liucj.factory.user.UserCenter;
+import com.liucj.factory.user.UserDispatcher;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
@@ -49,7 +50,14 @@ public class Factory {
         // 持久化的数据进行初始化
 //        Account.load(app());
     }
-
+    /**
+     * 获取一个用户中心的实现类
+     *
+     * @return 用户中心的规范接口
+     */
+    public static UserCenter getUserCenter() {
+        return UserDispatcher.instance();
+    }
     /**
      * 返回全局的Application
      *

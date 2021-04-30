@@ -4,6 +4,7 @@ package com.liucj.factory.net;
 import com.liucj.factory.RspModel;
 import com.liucj.factory.bean.LoginBean;
 import com.liucj.factory.bean.RegisterBean;
+import com.liucj.factory.card.UserCard;
 import com.liucj.factory.net.api.AccountRspModel;
 
 import java.util.List;
@@ -36,7 +37,9 @@ public interface RemoteService {
      */
     @POST("account/login")
     Call<RspModel<AccountRspModel>> login(@Body LoginBean bean);
-
+    // 获取联系人列表
+    @GET("user/contact")
+    Call<RspModel<List<UserCard>>> userContacts();
 //
 //    // 查询某人的信息
 //    @GET("user/{userId}")

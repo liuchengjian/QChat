@@ -1,13 +1,9 @@
-package com.liucj.common;
+package com.liucj.factory;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.widget.Toast;
-
-import androidx.annotation.StringRes;
-
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +17,7 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        Factory.initDBFlow();
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

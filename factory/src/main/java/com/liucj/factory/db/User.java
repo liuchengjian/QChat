@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
 
 import java.util.Date;
 import java.util.Objects;
@@ -12,7 +13,8 @@ import java.util.Objects;
 /**
  *用户表
  */
-public class User implements Author {
+@Table(database = AppDatabase.class)
+public class User extends BaseDbModel<User> implements Author {
     public static final int SEX_MAN = 1;
     public static final int SEX_WOMAN = 2;
 
@@ -162,4 +164,21 @@ public class User implements Author {
         return id != null ? id.hashCode() : 0;
     }
 
+    @Override
+    public boolean isSame(User old) {
+        // 主要关注Id即可
+        return this == old || Objects.equals(id, old.id);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public boolean isUiContentSame(User old) {
+        // 显示的内容是否一样，主要判断 名字，头像，性别，是否已经关注
+        return this == old || (
+                Objects.equals(name, old.name)
+                        && Objects.equals(portrait, old.portrait)
+                        && Objects.equals(sex, old.sex)
+                        && Objects.equals(isFollow, old.isFollow)
+        );
+    }
 }

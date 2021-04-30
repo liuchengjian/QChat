@@ -7,6 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.liucj.qchat"
+        applicationId "com.liucj.qchat.push"
         minSdkVersion 17
         targetSdkVersion 30
         versionCode 1

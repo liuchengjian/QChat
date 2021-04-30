@@ -4,8 +4,8 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.utils.QUtils;
+import com.liucj.factory.Application;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.account.LoginContract;
 import com.liucj.factory.presenter.account.LoginPresenter;
@@ -50,6 +50,11 @@ public class LoginFragment extends PresenterFragment<LoginContract.LoginPresente
         return R.layout.fragment_login;
     }
 
+    @Override
+    protected void initData() {
+        super.initData();
+    }
+
     @OnClick(R.id.txt_go_register)
     void onShowRegisterClick() {
         // 让AccountActivity进行界面切换
@@ -82,7 +87,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.LoginPresente
         mPassword.setEnabled(true);
         // 提交按钮可以继续点击
         mSubmit.setEnabled(true);
-        QUtils.makeText(getActivity(),String.valueOf(str));
+        QUtils.makeText(getActivity(), Application.getInstance().getString(str));
     }
 
     @Override
