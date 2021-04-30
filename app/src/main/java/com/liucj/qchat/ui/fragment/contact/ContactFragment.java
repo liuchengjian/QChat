@@ -71,7 +71,8 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
 
     @Override
     public void onAdapterDataChanged() {
-
+        // 进行界面操作
+        mPlaceHolderView.triggerOkOrEmpty(mAdapter.getItemCount() > 0);
     }
 
     @Override
