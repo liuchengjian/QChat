@@ -50,13 +50,6 @@ public class LoginFragment extends PresenterFragment<LoginContract.LoginPresente
         return R.layout.fragment_login;
     }
 
-    @OnClick(R.id.btn_submit)
-    void onSubmitClick() {
-        String phone = mPhone.getText().toString();
-        String password = mPassword.getText().toString();
-        // 调用P层进行注册
-    }
-
     @OnClick(R.id.txt_go_register)
     void onShowRegisterClick() {
         // 让AccountActivity进行界面切换
@@ -89,6 +82,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.LoginPresente
         mPassword.setEnabled(true);
         // 提交按钮可以继续点击
         mSubmit.setEnabled(true);
+        QUtils.makeText(getActivity(),String.valueOf(str));
     }
 
     @Override
@@ -102,10 +96,5 @@ public class LoginFragment extends PresenterFragment<LoginContract.LoginPresente
         mPassword.setEnabled(false);
         // 提交按钮不可以继续点击
         mSubmit.setEnabled(false);
-    }
-
-    @Override
-    public void setPresenter(LoginContract.LoginPresenter presenter) {
-
     }
 }

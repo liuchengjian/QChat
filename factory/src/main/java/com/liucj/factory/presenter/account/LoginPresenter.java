@@ -66,6 +66,4 @@ public class LoginPresenter extends BasePresenter<LoginContract.LoginView>
             }
         });
     }
-
-
 }
