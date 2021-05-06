@@ -204,7 +204,7 @@ public class DbHelper {
 //        } else
             if (Message.class.equals(tClass)) {
             // 消息变化，应该通知会话列表更新
-//            updateSession((Message[]) models);
+            updateSession((Message[]) models);
         }
     }
 
