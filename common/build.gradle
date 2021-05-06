@@ -50,5 +50,10 @@ dependencies {
     api 'net.qiujuer.genius:kit-reflect:2.0.0'
     implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
 
+    // 个推
+    api "com.getui:sdk:$rootProject.ext.getuiVersion"
+    // 空气面板
+    api "net.qiujuer.widget:airpanel:$rootProject.ext.airpanelVersion"
+
 
 }

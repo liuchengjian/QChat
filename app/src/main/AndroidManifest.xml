@@ -27,6 +27,34 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.SearchActivity"/>
+        <activity
+            android:name=".ui.activity.MessageActivity"
+            android:label="@string/title_activity_message"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Message"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.activity.PersonalActivity"
+            android:label="@string/title_activity_personal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransStatusBar" />
+
+        <!-- 个推的Service服务,维持长链接接收消息，process 名字不可更改 -->
+        <service
+            android:name=".ui.service.AppPushService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="AppPushService"
+            android:permission="1000"
+            android:process=":pushservice" />
+        <!-- 个推的消息送达服务，用以接收AppPushService处理后的有效消息接收，类似于之前的广播 -->
+        <service
+            android:name=".ui.service.AppMessageReceiverService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="AppMessageReceiverService"
+            android:permission="1000" />
+
     </application>
 
 </manifest>

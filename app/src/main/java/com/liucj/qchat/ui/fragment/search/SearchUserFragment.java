@@ -11,9 +11,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
+import com.liucj.common.utils.QUtils;
 import com.liucj.common.widget.Author;
 import com.liucj.common.widget.PortraitView;
 import com.liucj.common.widget.convention.EmptyView;
+import com.liucj.factory.Application;
 import com.liucj.factory.card.UserCard;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.contact.FollowContract;
@@ -138,11 +140,15 @@ public class SearchUserFragment extends PresenterFragment<SearchContract.Present
         @Override
         public void showError(int str) {
             // 更改当前界面状态
+            QUtils.makeText(getActivity(), Application.getInstance().getString(str));
             if (mFollow.getDrawable() instanceof LoadingDrawable) {
                 // 失败则停止动画，并且显示一个圆圈
-                LoadingDrawable drawable = (LoadingDrawable) mFollow.getDrawable();
-                drawable.setProgress(1);
-                drawable.stop();
+//                LoadingDrawable drawable = (LoadingDrawable) mFollow.getDrawable();
+//                drawable.setProgress(1);
+//                drawable.stop();
+                ((LoadingDrawable) mFollow.getDrawable()).stop();
+                // 设置为默认的
+                mFollow.setImageResource(R.drawable.sel_opt_done_add);
             }
         }
 

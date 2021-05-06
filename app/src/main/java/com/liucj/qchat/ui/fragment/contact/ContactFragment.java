@@ -19,6 +19,8 @@ import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.contact.ContactContract;
 import com.liucj.factory.presenter.contact.ContactPresenter;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.activity.MessageActivity;
+import com.liucj.qchat.ui.activity.PersonalActivity;
 import com.liucj.qchat.ui.adapter.ContactAdapter;
 
 import butterknife.BindView;
@@ -55,13 +57,14 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
         mAdapter= new ContactAdapter(getContext());
         mRecycler.setAdapter(mAdapter);
         // 点击事件监听
-//        mAdapter.setListener(new BaseRecyclerAdapter.AdapterListenerImpl<User>() {
-//            @Override
-//            public void onItemClick(BaseRecyclerAdapter.ViewHolder holder, User user) {
-//                // 跳转到聊天界面
-////                MessageActivity.show(getContext(), user);
-//            }
-//        });
+        mAdapter.setListener(new BaseRecyclerAdapter.AdapterListenerImpl<User>() {
+            @Override
+            public void onItemClick(BaseRecyclerAdapter.ViewHolder holder, User user) {
+                // 跳转到聊天界面
+                MessageActivity.show(getContext(), user);
+//                PersonalActivity.show(getContext(), user.getId());
+            }
+        });
 
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
@@ -114,12 +117,12 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
             Glide.with(getContext()).load(user.getPortrait()).into(mPortraitView);
             mName.setText(user.getName());
             mDesc.setText(user.getDesc());
-        }
-
-        @OnClick(R.id.im_portrait)
-        void onPortraitClick() {
-            // 显示信息
-//            PersonalActivity.show(getContext(), mData.getId());
+            mPortraitView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PersonalActivity.show(getContext(), mData.getId());
+                }
+            });
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.liucj.factory.model;
 
 import com.liucj.factory.db.AppDatabase;
+import com.liucj.factory.db.Message;
+import com.liucj.factory.db.Session;
 import com.raizlabs.android.dbflow.config.DatabaseDefinition;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -113,7 +115,7 @@ public class DbHelper {
                 // 保存
                 adapter.saveAll(Arrays.asList(models));
                 // 唤起通知
-//                instance.notifySave(tClass, models);
+                instance.notifySave(tClass, models);
             }
         }).build().execute();
     }
@@ -147,64 +149,66 @@ public class DbHelper {
     }
 
 
-//    /**
-//     * 进行通知调用
-//     *
-//     * @param tClass  通知的类型
-//     * @param models  通知的Model数组
-//     * @param <Model> 这个实例的范型，限定条件是BaseModel
-//     */
-//    private final <Model extends BaseModel> void notifySave(final Class<Model> tClass,
-//                                                            final Model... models) {
-//        // 找监听器
-//        final Set<ChangedListener> listeners = getListeners(tClass);
-//        if (listeners != null && listeners.size() > 0) {
-//            // 通用的通知
-//            for (ChangedListener<Model> listener : listeners) {
-//                listener.onDataSave(models);
-//            }
-//        }
-//
+    /**
+     * 进行通知调用
+     *
+     * @param tClass  通知的类型
+     * @param models  通知的Model数组
+     * @param <Model> 这个实例的范型，限定条件是BaseModel
+     */
+    private final <Model extends BaseModel> void notifySave(final Class<Model> tClass,
+                                                            final Model... models) {
+        // 找监听器
+        final Set<ChangedListener> listeners = getListeners(tClass);
+        if (listeners != null && listeners.size() > 0) {
+            // 通用的通知
+            for (ChangedListener<Model> listener : listeners) {
+                listener.onDataSave(models);
+            }
+        }
+
 //        // 列外情况
 //        if (GroupMember.class.equals(tClass)) {
 //            // 群成员变更，需要通知对应群信息更新
 //            updateGroup((GroupMember[]) models);
-//        } else if (Message.class.equals(tClass)) {
-//            // 消息变化，应该通知会话列表更新
-//            updateSession((Message[]) models);
-//        }
-//    }
-//
-//    /**
-//     * 进行通知调用
-//     *
-//     * @param tClass  通知的类型
-//     * @param models  通知的Model数组
-//     * @param <Model> 这个实例的范型，限定条件是BaseModel
-//     */
-//    @SuppressWarnings("unchecked")
-//    private final <Model extends BaseModel> void notifyDelete(final Class<Model> tClass,
-//                                                              final Model... models) {
-//        // 找监听器
-//        final Set<ChangedListener> listeners = getListeners(tClass);
-//        if (listeners != null && listeners.size() > 0) {
-//            // 通用的通知
-//            for (ChangedListener<Model> listener : listeners) {
-//                listener.onDataDelete(models);
-//            }
-//        }
-//
-//        // 列外情况
+//        } else
+            if (Message.class.equals(tClass)) {
+            // 消息变化，应该通知会话列表更新
+            updateSession((Message[]) models);
+        }
+    }
+
+    /**
+     * 进行通知调用
+     *
+     * @param tClass  通知的类型
+     * @param models  通知的Model数组
+     * @param <Model> 这个实例的范型，限定条件是BaseModel
+     */
+    @SuppressWarnings("unchecked")
+    private final <Model extends BaseModel> void notifyDelete(final Class<Model> tClass,
+                                                              final Model... models) {
+        // 找监听器
+        final Set<ChangedListener> listeners = getListeners(tClass);
+        if (listeners != null && listeners.size() > 0) {
+            // 通用的通知
+            for (ChangedListener<Model> listener : listeners) {
+                listener.onDataDelete(models);
+            }
+        }
+
+        // 列外情况
 //        if (GroupMember.class.equals(tClass)) {
 //            // 群成员变更，需要通知对应群信息更新
 //            updateGroup((GroupMember[]) models);
-//        } else if (Message.class.equals(tClass)) {
-//            // 消息变化，应该通知会话列表更新
+//        } else
+            if (Message.class.equals(tClass)) {
+            // 消息变化，应该通知会话列表更新
 //            updateSession((Message[]) models);
-//        }
-//    }
-//
-//
+        }
+    }
+
+
 //    /**
 //     * 从成员中找出成员对应的群，并对群进行更新
 //     *
@@ -235,51 +239,51 @@ public class DbHelper {
 //            }
 //        }).build().execute();
 //    }
-//
-//    /**
-//     * 从消息列表中，筛选出对应的会话，并对会话进行更新
-//     *
-//     * @param messages Message列表
-//     */
-//    private void updateSession(Message... messages) {
-//        // 标示一个Session的唯一性
-//        final Set<Session.Identify> identifies = new HashSet<>();
-//        for (Message message : messages) {
-//            Session.Identify identify = Session.createSessionIdentify(message);
-//            identifies.add(identify);
-//        }
-//
-//        // 异步的数据库查询，并异步的发起二次通知
-//        DatabaseDefinition definition = FlowManager.getDatabase(AppDatabase.class);
-//        definition.beginTransactionAsync(new ITransaction() {
-//            @Override
-//            public void execute(DatabaseWrapper databaseWrapper) {
-//                ModelAdapter<Session> adapter = FlowManager.getModelAdapter(Session.class);
-//                Session[] sessions = new Session[identifies.size()];
-//
-//                int index = 0;
-//                for (Session.Identify identify : identifies) {
-//                    Session session = SessionHelper.findFromLocal(identify.id);
-//
-//                    if (session == null) {
-//                        // 第一次聊天，创建一个你和对方的一个会话
-//                        session = new Session(identify);
-//                    }
-//
-//                    // 把会话，刷新到当前Message的最新状态
-//                    session.refreshToNow();
-//                    // 数据存储
-//                    adapter.save(session);
-//                    // 添加到集合
-//                    sessions[index++] = session;
-//                }
-//
-//                // 调用直接进行一次通知分发
-//                instance.notifySave(Session.class, sessions);
-//
-//            }
-//        }).build().execute();
-//    }
+
+    /**
+     * 从消息列表中，筛选出对应的会话，并对会话进行更新
+     *
+     * @param messages Message列表
+     */
+    private void updateSession(Message... messages) {
+        // 标示一个Session的唯一性
+        final Set<Session.Identify> identifies = new HashSet<>();
+        for (Message message : messages) {
+            Session.Identify identify = Session.createSessionIdentify(message);
+            identifies.add(identify);
+        }
+
+        // 异步的数据库查询，并异步的发起二次通知
+        DatabaseDefinition definition = FlowManager.getDatabase(AppDatabase.class);
+        definition.beginTransactionAsync(new ITransaction() {
+            @Override
+            public void execute(DatabaseWrapper databaseWrapper) {
+                ModelAdapter<Session> adapter = FlowManager.getModelAdapter(Session.class);
+                Session[] sessions = new Session[identifies.size()];
+
+                int index = 0;
+                for (Session.Identify identify : identifies) {
+                    Session session = SessionHelper.findFromLocal(identify.id);
+
+                    if (session == null) {
+                        // 第一次聊天，创建一个你和对方的一个会话
+                        session = new Session(identify);
+                    }
+
+                    // 把会话，刷新到当前Message的最新状态
+                    session.refreshToNow();
+                    // 数据存储
+                    adapter.save(session);
+                    // 添加到集合
+                    sessions[index++] = session;
+                }
+
+                // 调用直接进行一次通知分发
+                instance.notifySave(Session.class, sessions);
+
+            }
+        }).build().execute();
+    }
 
     /**
      * 通知监听器

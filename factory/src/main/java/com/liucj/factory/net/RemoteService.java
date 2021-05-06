@@ -2,8 +2,12 @@ package com.liucj.factory.net;
 
 
 import com.liucj.factory.RspModel;
+import com.liucj.factory.bean.GroupCreateModel;
 import com.liucj.factory.bean.LoginBean;
+import com.liucj.factory.bean.MsgCreateModel;
 import com.liucj.factory.bean.RegisterBean;
+import com.liucj.factory.card.GroupCard;
+import com.liucj.factory.card.MessageCard;
 import com.liucj.factory.card.UserCard;
 import com.liucj.factory.net.api.AccountRspModel;
 
@@ -40,11 +44,9 @@ public interface RemoteService {
     // 获取联系人列表
     @GET("user/contact")
     Call<RspModel<List<UserCard>>> userContacts();
-//
-//    // 查询某人的信息
-//    @GET("user/{userId}")
-//    Call<RspModel<UserCard>> userFind(@Path("userId") String userId);
-//
+    // 查询某人的信息
+    @GET("user/{userId}")
+    Call<RspModel<UserCard>> userFind(@Path("userId") String userId);
 
     // 用户搜索的接口
     @GET("user/search/{name}")
@@ -57,8 +59,24 @@ public interface RemoteService {
 //    @PUT("user")
 //    Call<RspModel<UserCard>> userUpdate(@Body UserUpdateModel model);
 
-//    // 发送消息的接口
-//    @POST("msg")
-//    Call<RspModel<MessageCard>> msgPush(@Body MsgCreateModel model);
+    // 发送消息的接口
+    @POST("msg")
+    Call<RspModel<MessageCard>> msgPush(@Body MsgCreateModel model);
+
+    // 创建群
+    @POST("group")
+    Call<RspModel<GroupCard>> groupCreate(@Body GroupCreateModel model);
+    // 拉取群信息
+    @GET("group/{groupId}")
+    Call<RspModel<GroupCard>> groupFind(@Path("groupId") String groupId);
+
+    /**
+     * 绑定设备Id
+     *
+     * @param pushId 设备Id
+     * @return RspModel<AccountRspModel>
+     */
+    @POST("account/bind/{pushId}")
+    Call<RspModel<AccountRspModel>> accountBind(@Path(encoded = true, value = "pushId") String pushId);
 
 }

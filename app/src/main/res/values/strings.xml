@@ -37,4 +37,6 @@
 
     <string name="title_member_list">成员</string>
     <string name="title_member_add">添加新成员</string>
+
+    <string name="label_chat_edit_hint">请输入…</string>
 </resources>
