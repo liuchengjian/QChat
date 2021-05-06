@@ -23,6 +23,7 @@ import com.liucj.common.activity.BaseActivity;
 import com.liucj.common.helper.BottomNavigationViewHelper;
 import com.liucj.common.helper.NavHelper;
 import com.liucj.common.widget.PortraitView;
+import com.liucj.factory.utils.AccountUtil;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.fragment.active.ActiveFragment;
 import com.liucj.qchat.ui.fragment.group.GroupFragment;
@@ -35,6 +36,7 @@ import net.qiujuer.genius.ui.widget.FloatActionButton;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         NavHelper.OnTabChangedListener<Integer>{
@@ -57,10 +59,34 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @BindView(R.id.btn_action)
     FloatActionButton mAction;
 
-    @BindView(R.id.im_searchs)
+    @BindView(R.id.im_search)
     ImageView mSearch;
 
     private NavHelper<Integer> mNavHelper;
+
+    @SuppressLint("NewApi")
+    @OnClick(R.id.im_search)
+    void onSearchMenuClick() {
+        // 在群的界面的时候，点击顶部的搜索就进入群搜索界面
+        // 其他都为人搜索的界面
+       int type = Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group) ?
+                SearchActivity.TYPE_GROUP : SearchActivity.TYPE_USER;
+        SearchActivity.show(this, type);
+    }
+
+    @SuppressLint("NewApi")
+    @OnClick(R.id.btn_action)
+    void onActionClick() {
+        // 浮动按钮点击时，判断当前界面是群还是联系人界面
+        // 如果是群，则打开群创建的界面
+        if (Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group)) {
+            // 打开群创建界面
+//            GroupCreateActivity.show(this);
+        } else {
+            // 如果是其他，都打开添加用户的界面
+            SearchActivity.show(this, SearchActivity.TYPE_USER);
+        }
+    }
 
     /**
      * MainActivity 显示的入口
@@ -114,7 +140,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         menu.performIdentifierAction(R.id.action_home, 0);
 
         // 初始化头像加载
-        mPortrait.setup(Glide.with(this),"");
+        mPortrait.setup(Glide.with(this), AccountUtil.getUser().getPortrait());
     }
 
 

@@ -169,7 +169,6 @@ public class User extends BaseDbModel<User> implements Author {
         // 主要关注Id即可
         return this == old || Objects.equals(id, old.id);
     }
-
     @SuppressLint("NewApi")
     @Override
     public boolean isUiContentSame(User old) {

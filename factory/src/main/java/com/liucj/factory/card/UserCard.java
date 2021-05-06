@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 用户卡片，用于接收服务器返回
  */
-public class UserCard implements Author {
+public class UserCard implements Author  {
     private String id;
     private String name;
     private String phone;

@@ -1,9 +1,11 @@
 package com.liucj.qchat.ui.holder;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
 import com.liucj.common.widget.PortraitView;
 import com.liucj.factory.db.User;
@@ -11,6 +13,7 @@ import com.liucj.qchat.R;
 import butterknife.BindView;
 
 public class ContactHolder extends BaseRecyclerAdapter.ViewHolder<User> {
+    private Context context;
     @BindView(R.id.im_portrait)
     PortraitView mPortraitView;
 
@@ -21,15 +24,16 @@ public class ContactHolder extends BaseRecyclerAdapter.ViewHolder<User> {
     TextView mDesc;
 
 
-    public ContactHolder(View itemView) {
+    public ContactHolder(View itemView, Context context) {
         super(itemView);
+        this.context = context;
     }
 
     @Override
-    protected void onBind(User user) {
-//        mPortraitView.setup(Glide.with(ContactFragment.this), user);
-//        mName.setText(user.getName());
-//        mDesc.setText(user.getDesc());
+    protected void onBind(User userCard) {
+        mPortraitView.setup(Glide.with(context), userCard.getPortrait());
+        mName.setText(userCard.getName());
+        mDesc.setText(userCard.getDesc());
     }
 
 }

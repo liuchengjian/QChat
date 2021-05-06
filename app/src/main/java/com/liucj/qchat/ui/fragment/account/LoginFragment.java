@@ -9,6 +9,7 @@ import com.liucj.factory.Application;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.account.LoginContract;
 import com.liucj.factory.presenter.account.LoginPresenter;
+import com.liucj.factory.utils.AccountUtil;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.activity.MainActivity;
 
@@ -53,6 +54,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.LoginPresente
     @Override
     protected void initData() {
         super.initData();
+        mPhone.setText(AccountUtil.getUser().getPhone());
     }
 
     @OnClick(R.id.txt_go_register)

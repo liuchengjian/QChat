@@ -3,7 +3,6 @@ package com.liucj.factory.db;
 /**
  * 基础用户接口
  */
-
 public interface Author {
     String getId();
 
