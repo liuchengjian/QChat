@@ -3,6 +3,8 @@ package com.liucj.factory.data.user;
 import android.text.TextUtils;
 
 
+import com.liucj.factory.data.helper.DbHelper;
+import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.model.db.User;
 
 import java.util.ArrayList;
