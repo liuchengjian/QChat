@@ -78,6 +78,12 @@ public abstract class ChatFragment<InitModel>
     }
 
     @Override
+    protected final int getContentLayoutId() {
+        return R.layout.fragment_chat_common;
+    }
+
+
+    @Override
     protected void initWidget(View root) {
         // 拿到占位布局
         // 替换顶部布局一定需要发生在super之前
@@ -137,6 +143,19 @@ public abstract class ChatFragment<InitModel>
 
     }
 
+    // 得到顶部布局的资源Id
+    @LayoutRes
+    protected abstract int getHeaderLayoutId();
+    @Override
+    public BaseRecyclerAdapter<Message> getRecyclerAdapter() {
+        return mAdapter;
+    }
+
+    @Override
+    public void onAdapterDataChanged() {
+        //不用实现，站位
+    }
+
     @OnClick(R.id.btn_submit)
     void onSubmitClick() {
         if (mSubmit.isActivated()) {
@@ -148,15 +167,12 @@ public abstract class ChatFragment<InitModel>
 //            onMoreClick();
         }
     }
-
     @Override
-    protected final int getContentLayoutId() {
-        return R.layout.fragment_chat_common;
+    protected void initData() {
+        super.initData();
+        //开始进行初始化操作
+        mPresenter.start();
     }
-
-    // 得到顶部布局的资源Id
-    @LayoutRes
-    protected abstract int getHeaderLayoutId();
 
     // 初始化Toolbar
     protected void initToolbar() {
@@ -185,11 +201,6 @@ public abstract class ChatFragment<InitModel>
                 mSubmit.setActivated(needSendMsg);
             }
         });
-    }
-
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
     }
 
     // 内容的适配器
@@ -262,7 +273,7 @@ public abstract class ChatFragment<InitModel>
 //            Face.decode(mContent, spannable, (int) Ui.dipToPx(getResources(), 20));
 
             // 把内容设置到布局上
-//            mContent.setText(spannable);
+            mContent.setText(message.getContent());
         }
     }
 

@@ -2,6 +2,7 @@ package com.liucj.factory.data.message;
 
 import android.text.TextUtils;
 
+import com.liucj.factory.data.user.UserDispatcher;
 import com.liucj.factory.model.card.MessageCard;
 import com.liucj.factory.model.db.Group;
 import com.liucj.factory.model.db.Message;

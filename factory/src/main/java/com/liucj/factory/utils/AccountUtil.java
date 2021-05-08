@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import com.liucj.factory.Factory;
 import com.liucj.factory.model.db.User;
 import com.liucj.factory.model.api.account.AccountRspModel;
+import com.liucj.factory.model.db.User_Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 
 /**
@@ -205,10 +207,10 @@ public class AccountUtil {
         if (TextUtils.isEmpty(userId)){
             return new User();
         }
-        return user;
-//        return TextUtils.isEmpty(userId) ? new User() : SQLite.select()
-//                .from(User.class)
-//                .where(User_Table.id.eq(userId))
-//                .querySingle();
+//        return user;
+        return TextUtils.isEmpty(userId) ? new User() : SQLite.select()
+                .from(User.class)
+                .where(User_Table.id.eq(userId))
+                .querySingle();
     }
 }

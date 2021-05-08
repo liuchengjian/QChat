@@ -8,11 +8,14 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
 
 import com.liucj.common.activity.BaseActivity;
+import com.liucj.factory.utils.AccountUtil;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.fragment.PermissionsFragment;
 
 import net.qiujuer.genius.ui.compat.UiCompat;
 
@@ -22,6 +25,8 @@ import net.qiujuer.genius.ui.compat.UiCompat;
 public class LaunchActivity extends BaseActivity {
 
     private ColorDrawable mBgDrawable;
+    // 是否已经得到PushId
+    private boolean mAlreadyGotPushReceiverId = false;
 
     @Override
     protected int getContentLayoutId() {
@@ -47,31 +52,69 @@ public class LaunchActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         // 动画进入到50%等待PushId获取到
-        startAnim(0.5f, new Runnable() {
-            @Override
-            public void run() {
-                // 检查等待状态
-//                waitPushReceiverId();
-                Skip();
-                finish();
+        // 检查等待状态
+        startAnim(0.5f, this::waitPushReceiverId);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 判断是否已经得到推送Id，如果已经得到则进行跳转操作，
+        // 在操作中检测权限状态
+        if (!mAlreadyGotPushReceiverId) {
+            reallySkip();
+        }
+    }
+    /**
+     * 等待个推框架对我们的PushId设置好值
+     */
+    private void waitPushReceiverId() {
+        if (AccountUtil.isLogin()) {
+            // 已经登录情况下，判断是否绑定
+            // 如果没有绑定则等待广播接收器进行绑定
+            if (AccountUtil.isBind()) {
+                waitPushReceiverIdDone();
+                return;
             }
-        });
+        } else {
+            // 没有登录
+            // 如果拿到了PushId, 没有登录是不能绑定PushId的
+            if (!TextUtils.isEmpty(AccountUtil.getPushId())) {
+                // 跳转
+                waitPushReceiverIdDone();
+                return;
+            }
+        }
+
+        // 循环等待
+        getWindow().getDecorView()
+                .postDelayed(this::waitPushReceiverId, 500);
+    }
+
+    /**
+     * 在跳转之前需要把剩下的50%进行完成
+     */
+    private void waitPushReceiverIdDone() {
+        // 标志已经得到PushId
+        mAlreadyGotPushReceiverId = true;
+        startAnim(1f, this::reallySkip);
     }
 
     /**
      * 真实的跳转
      */
-    private void Skip() {
-        // 检查跳转到主页还是登录
-        startAct(LoginActivity.class);
-//        if (!Account.isLogin()) {
-//            startAct(MainActivity.class);
-//        } else {
-//            startAct(AccountActivity.class);
-//        }
+    private void reallySkip() {
+        // 权限检测，跳转
+        if (PermissionsFragment.haveAll(this, getSupportFragmentManager())) {
+            // 检查跳转到主页还是登录
+            if (AccountUtil.isLogin()) {
+                MainActivity.show(this);
+            } else {
+                startAct(LoginActivity.class);
+            }
+            finish();
+        }
     }
-
-
 
     /**
      * 给背景设置一个动画
