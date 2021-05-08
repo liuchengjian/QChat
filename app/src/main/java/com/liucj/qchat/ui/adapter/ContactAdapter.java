@@ -3,10 +3,8 @@ package com.liucj.qchat.ui.adapter;
 import android.content.Context;
 import android.view.View;
 
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
-import com.liucj.factory.card.UserCard;
-import com.liucj.factory.db.User;
+import com.liucj.factory.model.db.User;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.holder.ContactHolder;
 

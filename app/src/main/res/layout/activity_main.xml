@@ -22,7 +22,7 @@
             android:paddingLeft="@dimen/len_4"
             android:paddingRight="@dimen/len_4">
 
-            <com.liucj.common.widget.PortraitView
+            <com.liucj.common.widget.view.PortraitView
                 android:id="@+id/im_portrait"
                 android:layout_width="36dp"
                 android:layout_height="36dp"

@@ -1,11 +1,9 @@
 package com.liucj.factory.presenter.message;
 
-import com.liucj.factory.db.Group;
-import com.liucj.factory.db.Message;
-import com.liucj.factory.db.User;
-import com.liucj.factory.presenter.BaseContract;
-
-import java.util.List;
+import com.liucj.factory.model.db.Group;
+import com.liucj.factory.model.db.Message;
+import com.liucj.factory.model.db.User;
+import com.liucj.factory.presenter.base.BaseContract;
 
 /**
  * 聊天的契约

@@ -1,7 +1,7 @@
 package com.liucj.factory.presenter.contact;
 
-import com.liucj.factory.card.UserCard;
-import com.liucj.factory.presenter.BaseContract;
+import com.liucj.factory.model.card.UserCard;
+import com.liucj.factory.presenter.base.BaseContract;
 
 /**
  * 关注的接口定义

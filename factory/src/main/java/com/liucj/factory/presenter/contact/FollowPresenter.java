@@ -1,9 +1,9 @@
 package com.liucj.factory.presenter.contact;
 
-import com.liucj.common.DataSource;
-import com.liucj.factory.card.UserCard;
-import com.liucj.factory.model.UserHelper;
-import com.liucj.factory.presenter.BasePresenter;
+import com.liucj.common.factory.data.DataSource;
+import com.liucj.factory.model.card.UserCard;
+import com.liucj.factory.data.helper.UserHelper;
+import com.liucj.factory.presenter.base.BasePresenter;
 
 import net.qiujuer.genius.kit.handler.Run;
 import net.qiujuer.genius.kit.handler.runable.Action;

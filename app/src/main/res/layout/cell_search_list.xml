@@ -13,7 +13,7 @@
     android:paddingStart="@dimen/len_16"
     android:paddingTop="@dimen/len_12">
 
-    <com.liucj.common.widget.PortraitView
+    <com.liucj.common.widget.view.PortraitView
         android:id="@+id/im_portrait"
         android:layout_width="@dimen/portraitSize"
         android:layout_height="@dimen/portraitSize"

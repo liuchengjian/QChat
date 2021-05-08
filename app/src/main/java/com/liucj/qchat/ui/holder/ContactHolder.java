@@ -5,10 +5,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
-import com.liucj.common.widget.PortraitView;
-import com.liucj.factory.db.User;
+import com.liucj.common.widget.view.PortraitView;
+import com.liucj.factory.model.db.User;
 import com.liucj.qchat.R;
 import butterknife.BindView;
 

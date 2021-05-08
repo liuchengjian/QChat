@@ -2,13 +2,14 @@ package com.liucj.factory.presenter.contact;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.liucj.common.DataSource;
+import com.liucj.common.factory.data.DataSource;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
-import com.liucj.factory.bean.BaseSourcePresenter;
-import com.liucj.factory.db.DiffUiDataCallback;
-import com.liucj.factory.db.User;
-import com.liucj.factory.model.UserHelper;
-import com.liucj.factory.user.ContactRepository;
+import com.liucj.factory.data.user.ContactDataSource;
+import com.liucj.factory.presenter.base.BaseSourcePresenter;
+import com.liucj.factory.model.db.DiffUiDataCallback;
+import com.liucj.factory.model.db.User;
+import com.liucj.factory.data.helper.UserHelper;
+import com.liucj.factory.data.user.ContactRepository;
 
 import java.util.List;
 

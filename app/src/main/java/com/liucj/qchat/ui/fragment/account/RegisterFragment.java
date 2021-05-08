@@ -1,18 +1,14 @@
 package com.liucj.qchat.ui.fragment.account;
 
 import android.content.Context;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.utils.QUtils;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.account.RegisterContract;
 import com.liucj.factory.presenter.account.RegisterPresenter;
 import com.liucj.qchat.R;
-import com.liucj.qchat.ui.activity.MainActivity;
-
 import net.qiujuer.genius.ui.widget.Loading;
 
 import butterknife.BindView;

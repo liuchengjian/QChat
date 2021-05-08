@@ -1,7 +1,7 @@
 package com.liucj.factory.presenter.contact;
 
-import com.liucj.factory.db.User;
-import com.liucj.factory.presenter.BaseContract;
+import com.liucj.factory.model.db.User;
+import com.liucj.factory.presenter.base.BaseContract;
 
 /**
  * 联系人契约

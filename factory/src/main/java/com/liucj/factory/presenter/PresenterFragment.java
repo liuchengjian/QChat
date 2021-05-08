@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.utils.QUtils;
+import com.liucj.factory.presenter.base.BaseContract;
 
 
 /**

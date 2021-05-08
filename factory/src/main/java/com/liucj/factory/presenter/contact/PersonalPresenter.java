@@ -1,11 +1,9 @@
 package com.liucj.factory.presenter.contact;
 
-import android.accounts.Account;
-
 import com.liucj.factory.Factory;
-import com.liucj.factory.db.User;
-import com.liucj.factory.model.UserHelper;
-import com.liucj.factory.presenter.BasePresenter;
+import com.liucj.factory.model.db.User;
+import com.liucj.factory.data.helper.UserHelper;
+import com.liucj.factory.presenter.base.BasePresenter;
 import com.liucj.factory.utils.AccountUtil;
 
 import net.qiujuer.genius.kit.handler.Run;

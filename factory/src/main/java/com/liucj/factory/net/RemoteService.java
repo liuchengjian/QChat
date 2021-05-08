@@ -1,15 +1,15 @@
 package com.liucj.factory.net;
 
 
-import com.liucj.factory.RspModel;
-import com.liucj.factory.bean.GroupCreateModel;
-import com.liucj.factory.bean.LoginBean;
-import com.liucj.factory.bean.MsgCreateModel;
-import com.liucj.factory.bean.RegisterBean;
-import com.liucj.factory.card.GroupCard;
-import com.liucj.factory.card.MessageCard;
-import com.liucj.factory.card.UserCard;
-import com.liucj.factory.net.api.AccountRspModel;
+import com.liucj.factory.model.RspModel;
+import com.liucj.factory.model.api.group.GroupCreateModel;
+import com.liucj.factory.model.api.account.LoginBean;
+import com.liucj.factory.model.api.message.MsgCreateModel;
+import com.liucj.factory.model.api.account.RegisterBean;
+import com.liucj.factory.model.card.GroupCard;
+import com.liucj.factory.model.card.MessageCard;
+import com.liucj.factory.model.card.UserCard;
+import com.liucj.factory.model.api.account.AccountRspModel;
 
 import java.util.List;
 

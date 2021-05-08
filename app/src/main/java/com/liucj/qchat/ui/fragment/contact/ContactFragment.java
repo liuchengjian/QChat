@@ -4,17 +4,14 @@ package com.liucj.qchat.ui.fragment.contact;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
-import com.liucj.common.widget.PortraitView;
-import com.liucj.common.widget.convention.EmptyView;
-import com.liucj.factory.card.UserCard;
-import com.liucj.factory.db.User;
+import com.liucj.common.widget.view.PortraitView;
+import com.liucj.common.widget.view.EmptyView;
+import com.liucj.factory.model.db.User;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.contact.ContactContract;
 import com.liucj.factory.presenter.contact.ContactPresenter;
@@ -24,7 +21,6 @@ import com.liucj.qchat.ui.activity.PersonalActivity;
 import com.liucj.qchat.ui.adapter.ContactAdapter;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class ContactFragment extends PresenterFragment<ContactContract.Presenter>
         implements ContactContract.View{

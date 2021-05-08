@@ -7,6 +7,7 @@ import com.liucj.common.activity.ToolbarActivity;
 import com.liucj.common.utils.QUtils;
 import com.liucj.factory.Application;
 import com.liucj.factory.R;
+import com.liucj.factory.presenter.base.BaseContract;
 
 
 /**

@@ -6,25 +6,23 @@ import androidx.annotation.StringRes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.liucj.common.DataSource;
+import com.liucj.common.factory.data.DataSource;
 import com.liucj.common.utils.QUtils;
-import com.liucj.factory.card.GroupCard;
-import com.liucj.factory.card.MessageCard;
-import com.liucj.factory.card.UserCard;
+import com.liucj.factory.model.card.GroupCard;
+import com.liucj.factory.model.card.MessageCard;
+import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.model.PushModel;
-import com.liucj.factory.user.GroupCenter;
-import com.liucj.factory.user.GroupDispatcher;
-import com.liucj.factory.user.MessageCenter;
-import com.liucj.factory.user.MessageDispatcher;
-import com.liucj.factory.user.UserCenter;
-import com.liucj.factory.user.UserDispatcher;
+import com.liucj.factory.model.RspModel;
+import com.liucj.factory.data.group.GroupCenter;
+import com.liucj.factory.data.group.GroupDispatcher;
+import com.liucj.factory.data.message.MessageCenter;
+import com.liucj.factory.data.message.MessageDispatcher;
+import com.liucj.factory.data.user.UserCenter;
+import com.liucj.factory.data.user.UserDispatcher;
 import com.liucj.factory.utils.AccountUtil;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
-import java.lang.reflect.Type;
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -79,7 +77,7 @@ public class Factory {
                 .build());
 
         // 持久化的数据进行初始化
-//        Account.load(app());
+        AccountUtil.load(app());
     }
     /**
      * 获取一个用户中心的实现类

@@ -3,12 +3,12 @@ package com.liucj.factory.presenter.message;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.liucj.factory.bean.BaseSourcePresenter;
-import com.liucj.factory.bean.MsgCreateModel;
-import com.liucj.factory.datasoure.MessageDataSource;
-import com.liucj.factory.db.DiffUiDataCallback;
-import com.liucj.factory.db.Message;
-import com.liucj.factory.model.MessageHelper;
+import com.liucj.factory.presenter.base.BaseSourcePresenter;
+import com.liucj.factory.model.api.message.MsgCreateModel;
+import com.liucj.factory.data.message.MessageDataSource;
+import com.liucj.factory.model.db.DiffUiDataCallback;
+import com.liucj.factory.model.db.Message;
+import com.liucj.factory.data.helper.MessageHelper;
 
 import java.util.List;
 

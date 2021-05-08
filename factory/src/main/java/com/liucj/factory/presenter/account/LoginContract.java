@@ -1,6 +1,6 @@
 package com.liucj.factory.presenter.account;
 
-import com.liucj.factory.presenter.BaseContract;
+import com.liucj.factory.presenter.base.BaseContract;
 
 /**
  * 登录的契约

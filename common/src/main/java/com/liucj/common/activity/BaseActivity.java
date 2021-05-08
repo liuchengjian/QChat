@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.liucj.common.fragment.BaseFragment;
-import com.liucj.common.widget.convention.PlaceHolderView;
+import com.liucj.common.widget.view.PlaceHolderView;
 
 import java.io.Serializable;
 import java.util.List;

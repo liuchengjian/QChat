@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.liucj.factory.Factory;
-import com.liucj.factory.db.User;
-import com.liucj.factory.net.api.AccountRspModel;
+import com.liucj.factory.model.db.User;
+import com.liucj.factory.model.api.account.AccountRspModel;
 
 
 /**

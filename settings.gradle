@@ -1,3 +1,4 @@
+include ':common'
 include ':factory'
 include ':common'
 include ':app'

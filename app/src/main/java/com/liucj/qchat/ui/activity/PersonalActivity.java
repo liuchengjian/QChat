@@ -15,9 +15,8 @@ import android.widget.TextView;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.bumptech.glide.Glide;
-import com.liucj.common.activity.ToolbarActivity;
-import com.liucj.common.widget.PortraitView;
-import com.liucj.factory.db.User;
+import com.liucj.common.widget.view.PortraitView;
+import com.liucj.factory.model.db.User;
 import com.liucj.factory.presenter.PresenterToolbarActivity;
 import com.liucj.factory.presenter.contact.PersonalContract;
 import com.liucj.factory.presenter.contact.PersonalPresenter;

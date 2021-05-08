@@ -1,20 +1,14 @@
 package com.liucj.qchat.ui.fragment.message;
 
-import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
-import com.liucj.common.widget.PortraitView;
-import com.liucj.factory.db.Message;
-import com.liucj.factory.db.User;
+import com.liucj.common.widget.view.PortraitView;
+import com.liucj.factory.model.db.Message;
+import com.liucj.factory.model.db.User;
 import com.liucj.factory.presenter.message.ChatContract;
 import com.liucj.factory.presenter.message.ChatUserPresenter;
 import com.liucj.qchat.R;

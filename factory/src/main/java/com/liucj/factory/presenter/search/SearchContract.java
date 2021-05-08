@@ -1,8 +1,8 @@
 package com.liucj.factory.presenter.search;
 
-import com.liucj.factory.card.GroupCard;
-import com.liucj.factory.card.UserCard;
-import com.liucj.factory.presenter.BaseContract;
+import com.liucj.factory.model.card.GroupCard;
+import com.liucj.factory.model.card.UserCard;
+import com.liucj.factory.presenter.base.BaseContract;
 
 import java.util.List;
 

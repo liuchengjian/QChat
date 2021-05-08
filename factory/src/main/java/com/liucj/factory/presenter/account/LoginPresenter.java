@@ -2,12 +2,12 @@ package com.liucj.factory.presenter.account;
 
 import android.text.TextUtils;
 
-import com.liucj.common.DataSource;
+import com.liucj.common.factory.data.DataSource;
 import com.liucj.factory.R;
-import com.liucj.factory.bean.LoginBean;
-import com.liucj.factory.db.User;
-import com.liucj.factory.presenter.BasePresenter;
-import com.liucj.factory.model.AccountHelper;
+import com.liucj.factory.model.api.account.LoginBean;
+import com.liucj.factory.model.db.User;
+import com.liucj.factory.presenter.base.BasePresenter;
+import com.liucj.factory.data.helper.AccountHelper;
 
 import net.qiujuer.genius.kit.handler.Run;
 import net.qiujuer.genius.kit.handler.runable.Action;

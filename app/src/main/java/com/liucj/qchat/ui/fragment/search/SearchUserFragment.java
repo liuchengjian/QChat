@@ -8,15 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
 import com.liucj.common.utils.QUtils;
-import com.liucj.common.widget.Author;
-import com.liucj.common.widget.PortraitView;
-import com.liucj.common.widget.convention.EmptyView;
+import com.liucj.common.widget.view.PortraitView;
+import com.liucj.common.widget.view.EmptyView;
 import com.liucj.factory.Application;
-import com.liucj.factory.card.UserCard;
+import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.contact.FollowContract;
 import com.liucj.factory.presenter.contact.FollowPresenter;

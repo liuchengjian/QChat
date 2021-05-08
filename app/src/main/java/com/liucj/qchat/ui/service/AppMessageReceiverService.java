@@ -8,7 +8,7 @@ import com.igexin.sdk.message.GTCmdMessage;
 import com.igexin.sdk.message.GTNotificationMessage;
 import com.igexin.sdk.message.GTTransmitMessage;
 import com.liucj.factory.Factory;
-import com.liucj.factory.model.AccountHelper;
+import com.liucj.factory.data.helper.AccountHelper;
 import com.liucj.factory.utils.AccountUtil;
 
 

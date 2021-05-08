@@ -7,9 +7,9 @@ import android.text.TextUtils;
 
 import com.liucj.common.activity.BaseActivity;
 import com.liucj.common.fragment.BaseFragment;
-import com.liucj.factory.db.Author;
-import com.liucj.factory.db.Message;
-import com.liucj.factory.db.Session;
+import com.liucj.common.factory.modle.Author;
+import com.liucj.factory.model.db.Message;
+import com.liucj.factory.model.db.Session;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.fragment.message.ChatGroupFragment;
 import com.liucj.qchat.ui.fragment.message.ChatUserFragment;
