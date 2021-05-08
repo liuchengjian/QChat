@@ -72,15 +72,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 SearchActivity.TYPE_GROUP : SearchActivity.TYPE_USER;
         SearchActivity.show(this, type);
     }
-
     @SuppressLint("NewApi")
     @OnClick(R.id.btn_action)
     void onActionClick() {
         // 浮动按钮点击时，判断当前界面是群还是联系人界面
         // 如果是群，则打开群创建的界面
-        if (Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group)) {
+        if (Objects.equals(mNavHelper.getCurrentTab().extra, R.string.action_group)) {
             // 打开群创建界面
-//            GroupCreateActivity.show(this);
+            GroupCreateActivity.show(this);
         } else {
             // 如果是其他，都打开添加用户的界面
             SearchActivity.show(this, SearchActivity.TYPE_USER);
@@ -137,11 +136,18 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         Menu menu = mNavigation.getMenu();
         // 触发首次选中Home
         menu.performIdentifierAction(R.id.action_home, 0);
-
+        Glide.with(this)
+                .load(AccountUtil.getUser().getPortrait())
+                .centerCrop()
+                .into(mPortrait);
         // 初始化头像加载
-        mPortrait.setup(Glide.with(this), AccountUtil.getUser().getPortrait());
+//        mPortrait.setup(Glide.with(this), AccountUtil.getUser().getPortrait());
     }
 
+    @OnClick(R.id.im_portrait)
+    void onPortraitClick() {
+        PersonalActivity.show(this, AccountUtil.getUserId());
+    }
 
 
     /**

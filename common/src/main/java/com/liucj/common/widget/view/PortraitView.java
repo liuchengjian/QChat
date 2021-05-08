@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 
 import com.bumptech.glide.RequestManager;
 import com.liucj.common.R;
-import com.liucj.common.bean.Author;
+import com.liucj.common.factory.modle.Author;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

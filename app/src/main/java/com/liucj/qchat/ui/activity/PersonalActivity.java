@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import com.liucj.qchat.R;
 import net.qiujuer.genius.res.Resource;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.Presenter>
         implements PersonalContract.View {
@@ -55,6 +58,17 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
         intent.putExtra(BOUND_KEY_ID, userId);
         context.startActivity(intent);
     }
+
+    @OnClick(R.id.btn_say_hello)
+    void onSayHelloClick() {
+        // 发起聊天的点击
+        User user = mPresenter.getUserPersonal();
+        if (user == null)
+            return;
+        MessageActivity.show(this, user);
+    }
+
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_personal;
@@ -76,6 +90,25 @@ public class PersonalActivity extends PresenterToolbarActivity<PersonalContract.
     protected void initData() {
         super.initData();
         mPresenter.start();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.personal, menu);
+        mFollowItem = menu.findItem(R.id.action_follow);
+        changeFollowItemStatus();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_follow) {
+            // TODO 进行关注操作
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -53,7 +53,7 @@
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="@id/guideline1"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:src="@drawable/ic_logo" />
+        tools:src="@drawable/ic_icon_user" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:text="Hugh Michael Jackman is an Australian actor, singer and producer. Jackman has won international recognition for his roles in variety of film genres." />
 
-    <Button
+    <net.qiujuer.genius.ui.widget.Button
         android:id="@+id/btn_say_hello"
         android:layout_width="wrap_content"
         android:layout_height="44dp"

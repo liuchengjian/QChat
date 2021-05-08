@@ -20,6 +20,7 @@ import com.liucj.factory.presenter.contact.FollowPresenter;
 import com.liucj.factory.presenter.search.SearchContract;
 import com.liucj.factory.presenter.search.SearchUserPresenter;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.activity.PersonalActivity;
 import com.liucj.qchat.ui.activity.SearchActivity;
 
 import net.qiujuer.genius.ui.Ui;
@@ -125,7 +126,7 @@ public class SearchUserFragment extends PresenterFragment<SearchContract.Present
         @OnClick(R.id.im_portrait)
         void onPortraitClick() {
             // 显示信息
-//            PersonalActivity.show(getContext(), mData.getId());
+            PersonalActivity.show(getContext(), mData.getId());
         }
 
         @OnClick(R.id.im_follow)

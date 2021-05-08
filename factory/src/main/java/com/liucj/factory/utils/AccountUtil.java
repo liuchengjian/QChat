@@ -148,28 +148,6 @@ public class AccountUtil {
     }
 
     /**
-     * 获取当前登录的用户信息
-     *
-     * @return User
-     */
-//    public static User getUser() {
-//        // 如果为null返回一个new的User，其次从数据库查询
-//        return TextUtils.isEmpty(userId) ? new User() : SQLite.select()
-//                .from(User.class)
-//                .where(User_Table.id.eq(userId))
-//                .querySingle();
-//    }
-
-//    /**
-//     * 返回用户Id
-//     *
-//     * @return 用户Id
-//     */
-//    public static String getUserId() {
-//        return getUser().getId();
-//    }
-
-    /**
      * 获取当前登录的Token
      *
      * @return Token
