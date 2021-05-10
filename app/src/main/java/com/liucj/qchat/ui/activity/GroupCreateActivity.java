@@ -3,6 +3,8 @@ package com.liucj.qchat.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,13 +24,19 @@ import com.liucj.common.activity.ToolbarActivity;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
 import com.liucj.common.utils.QUtils;
 import com.liucj.common.widget.view.PortraitView;
+import com.liucj.factory.Application;
 import com.liucj.factory.presenter.PresenterToolbarActivity;
 import com.liucj.factory.presenter.group.GroupCreateContract;
 import com.liucj.factory.presenter.group.GroupCreatePresenter;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.fragment.GalleryFragment;
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateContract.Presenter>
         implements GroupCreateContract.View {
@@ -71,6 +79,32 @@ public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateCon
         mPresenter.start();
     }
 
+    @OnClick(R.id.im_portrait)
+    void onPortraitClick() {
+        hideSoftKeyboard();
+        new GalleryFragment()
+                .setListener(new GalleryFragment.OnSelectedListener() {
+                    @Override
+                    public void onSelectedImage(String path) {
+                        UCrop.Options options = new UCrop.Options();
+                        // 设置图片处理的格式JPEG
+                        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
+                        // 设置压缩后的图片精度
+                        options.setCompressionQuality(96);
+
+                        // 得到头像的缓存地址
+                        File dPath = Application.getPortraitTmpFile();
+
+                        // 发起剪切
+                        UCrop.of(Uri.fromFile(new File(path)), Uri.fromFile(dPath))
+                                .withAspectRatio(1, 1) // 1比1比例
+                                .withMaxResultSize(520, 520) // 返回最大的尺寸
+                                .withOptions(options) // 相关参数
+                                .start(GroupCreateActivity.this);
+                    }
+                }).show(getSupportFragmentManager(), GalleryFragment.class.getName());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -107,6 +141,36 @@ public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateCon
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 收到从Activity传递过来的回调，然后取出其中的值进行图片加载
+        // 如果是我能够处理的类型
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            // 通过UCrop得到对应的Uri
+            final Uri resultUri = UCrop.getOutput(data);
+            if (resultUri != null) {
+                loadPortrait(resultUri);
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            QUtils.makeText(this,getString(R.string.data_rsp_error_unknown));
+        }
+    }
+    /**
+     * 加载Uri到当前的头像中
+     *
+     * @param uri Uri
+     */
+    private void loadPortrait(Uri uri) {
+        // 得到头像地址
+        mPortraitPath = uri.getPath();
+
+        Glide.with(this)
+//                .asBitmap()
+                .load(uri)
+                .centerCrop()
+                .into(mPortrait);
+    }
+    @Override
     protected GroupCreateContract.Presenter initPresenter() {
         return new GroupCreatePresenter(this);
     }
@@ -115,7 +179,7 @@ public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateCon
     public void onCreateSucceed() {
         // 提示成功
         hideLoading();
-        QUtils.makeText(this,getString(R.string.label_group_create_succeed));
+        QUtils.makeText(this, getString(R.string.label_group_create_succeed));
         finish();
     }
 
@@ -159,7 +223,7 @@ public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateCon
         @OnCheckedChanged(R.id.cb_select)
         void onCheckedChanged(boolean checked) {
             // 进行状态更改
-//            mPresenter.changeSelect(mData, checked);
+            mPresenter.changeSelect(mData, checked);
         }
 
         @Override

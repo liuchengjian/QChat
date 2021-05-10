@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.liucj.common.activity.BaseActivity;
 import com.liucj.common.fragment.BaseFragment;
 import com.liucj.common.factory.modle.Author;
+import com.liucj.factory.model.db.Group;
 import com.liucj.factory.model.db.Message;
 import com.liucj.factory.model.db.Session;
 import com.liucj.qchat.R;
@@ -50,6 +51,21 @@ public class MessageActivity extends BaseActivity {
         Intent intent = new Intent(context, MessageActivity.class);
         intent.putExtra(KEY_RECEIVER_ID, author.getId());
         intent.putExtra(KEY_RECEIVER_IS_GROUP, false);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 发起群聊天
+     *
+     * @param context 上下文
+     * @param group   群的Model
+     */
+    public static void show(Context context, Group group) {
+        if (group == null || context == null || TextUtils.isEmpty(group.getId()))
+            return;
+        Intent intent = new Intent(context, MessageActivity.class);
+        intent.putExtra(KEY_RECEIVER_ID, group.getId());
+        intent.putExtra(KEY_RECEIVER_IS_GROUP, true);
         context.startActivity(intent);
     }
 

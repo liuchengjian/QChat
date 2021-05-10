@@ -1,8 +1,11 @@
 package com.liucj.factory.data.group;
 
 
+import com.liucj.factory.data.helper.GroupHelper;
 import com.liucj.factory.model.card.GroupCard;
+import com.liucj.factory.model.card.GroupMemberCard;
 import com.liucj.factory.model.db.Group;
+import com.liucj.factory.model.db.GroupMember;
 import com.liucj.factory.model.db.User;
 import com.liucj.factory.data.helper.DbHelper;
 import com.liucj.factory.data.helper.UserHelper;
@@ -38,37 +41,38 @@ public class GroupDispatcher implements GroupCenter {
         executor.execute(new GroupHandler(cards));
     }
 
-//    @Override
-//    public void dispatch(GroupMemberCard... cards) {
-//        if (cards == null || cards.length == 0)
-//            return;
-//        executor.execute(new GroupMemberRspHandler(cards));
-//    }
 
-//    private class GroupMemberRspHandler implements Runnable {
-//        private final GroupMemberCard[] cards;
-//
-//        GroupMemberRspHandler(GroupMemberCard[] cards) {
-//            this.cards = cards;
-//        }
-//
-//        @Override
-//        public void run() {
-//            List<GroupMember> members = new ArrayList<>();
-//            for (GroupMemberCard model : cards) {
-//                // 成员对应的人的信息
-//                User user = UserHelper.search(model.getUserId());
-//                // 成员对应的群的信息
-//                Group group = GroupHelper.find(model.getGroupId());
-//                if (user != null && group != null) {
-//                    GroupMember member = model.build(group, user);
-//                    members.add(member);
-//                }
-//            }
-//            if (members.size() > 0)
-//                DbHelper.save(GroupMember.class, members.toArray(new GroupMember[0]));
-//        }
-//    }
+    @Override
+    public void dispatch(GroupMemberCard... cards) {
+        if (cards == null || cards.length == 0)
+            return;
+        executor.execute(new GroupMemberRspHandler(cards));
+    }
+
+    private class GroupMemberRspHandler implements Runnable {
+        private final GroupMemberCard[] cards;
+
+        GroupMemberRspHandler(GroupMemberCard[] cards) {
+            this.cards = cards;
+        }
+
+        @Override
+        public void run() {
+            List<GroupMember> members = new ArrayList<>();
+            for (GroupMemberCard model : cards) {
+                // 成员对应的人的信息
+                User user = UserHelper.search(model.getUserId());
+                // 成员对应的群的信息
+                Group group = GroupHelper.find(model.getGroupId());
+                if (user != null && group != null) {
+                    GroupMember member = model.build(group, user);
+                    members.add(member);
+                }
+            }
+            if (members.size() > 0)
+                DbHelper.save(GroupMember.class, members.toArray(new GroupMember[0]));
+        }
+    }
 
     /**
      * 把群Card处理为群DB类

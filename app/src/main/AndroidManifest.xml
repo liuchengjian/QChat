@@ -45,6 +45,10 @@
         <activity android:name=".ui.activity.GroupCreateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Group.Create" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <service
             android:name=".ui.service.AppPushService"
             android:enabled="true"

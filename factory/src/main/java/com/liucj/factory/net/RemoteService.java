@@ -7,6 +7,7 @@ import com.liucj.factory.model.api.account.LoginBean;
 import com.liucj.factory.model.api.message.MsgCreateModel;
 import com.liucj.factory.model.api.account.RegisterBean;
 import com.liucj.factory.model.card.GroupCard;
+import com.liucj.factory.model.card.GroupMemberCard;
 import com.liucj.factory.model.card.MessageCard;
 import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.model.api.account.AccountRspModel;
@@ -78,5 +79,21 @@ public interface RemoteService {
      */
     @POST("account/bind/{pushId}")
     Call<RspModel<AccountRspModel>> accountBind(@Path(encoded = true, value = "pushId") String pushId);
+
+
+    // 我的群列表
+    @GET("group/list/{date}")
+    Call<RspModel<List<GroupCard>>> groups(@Path(value = "date", encoded = true) String date);
+
+
+    // 我的群的成员列表
+    @GET("group/{groupId}/member")
+    Call<RspModel<List<GroupMemberCard>>> groupMembers(@Path("groupId") String groupId);
+
+
+    // 群搜索的接口
+    @GET("group/search/{name}")
+    Call<RspModel<List<GroupCard>>> groupSearch(@Path(value = "name", encoded = true) String name);
+
 
 }

@@ -13,4 +13,7 @@
     <string name="prompt_empty">数据为空</string>
     <string name="prompt_error">数据错误</string>
     <string name="prompt_loading">数据加载中····</string>
+
+    <string name="label_gallery_select_max_size">至多选择%s张</string>
+    <string name="label_gallery_selected_size">已选%s张</string>
 </resources>

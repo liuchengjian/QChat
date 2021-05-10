@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     void onSearchMenuClick() {
         // 在群的界面的时候，点击顶部的搜索就进入群搜索界面
         // 其他都为人搜索的界面
-       int type = Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group) ?
+       int type = Objects.equals(mNavHelper.getCurrentTab().extra, R.string.action_group) ?
                 SearchActivity.TYPE_GROUP : SearchActivity.TYPE_USER;
         SearchActivity.show(this, type);
     }

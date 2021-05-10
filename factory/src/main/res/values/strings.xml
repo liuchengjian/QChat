@@ -23,4 +23,9 @@
     <string name="data_rsp_error_account_login">登录失败，账号或密码错误? §^_^§</string>
     <string name="data_rsp_error_account_register">抱歉，注册失败!  ^_^|||</string>
     <string name="data_rsp_error_account_no_permission">您越权啦!!!</string>
+
+    <string name="label_group_create_invalid">所有项都是必须，并且至少选择一名成员!</string>
+    <string name="label_group_member_add_invalid">没有新增加的成员!</string>
+    <string name="label_group_create_succeed">创建群成功!</string>
+
 </resources>
