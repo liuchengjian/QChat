@@ -92,7 +92,7 @@ public class SearchActivity extends ToolbarActivity {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     // 当点击了提交按钮的时候
-//                    search(query);
+                    search(query);
                     return true;
                 }
 
@@ -100,7 +100,7 @@ public class SearchActivity extends ToolbarActivity {
                 public boolean onQueryTextChange(String s) {
                     // 当文字改变的时候，咱们不会及时搜索，只在为null的情况下进行搜索
                     if (TextUtils.isEmpty(s)) {
-//                        search("");
+                        search("");
                         return true;
                     }
                     return false;
@@ -112,7 +112,16 @@ public class SearchActivity extends ToolbarActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
-
+    /**
+     * 搜索的发起点
+     *
+     * @param query 搜索的文字
+     */
+    private void search(String query) {
+        if (mSearchFragment == null)
+            return;
+        mSearchFragment.search(query);
+    }
     /**
      * 搜索的Fragment必须继承的接口
      */

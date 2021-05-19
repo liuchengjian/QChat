@@ -3,7 +3,10 @@ package com.liucj.factory.presenter.message;
 import com.liucj.factory.model.db.Group;
 import com.liucj.factory.model.db.Message;
 import com.liucj.factory.model.db.User;
+import com.liucj.factory.model.db.view.MemberUserModel;
 import com.liucj.factory.presenter.base.BaseContract;
+
+import java.util.List;
 
 /**
  * 聊天的契约
@@ -40,6 +43,6 @@ public interface ChatContract {
         void showAdminOption(boolean isAdmin);
 
         // 初始化成员信息
-//        void onInitGroupMembers(List<MemberUserModel> members, long moreCount);
+        void onInitGroupMembers(List<MemberUserModel> members, long moreCount);
     }
 }

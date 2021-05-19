@@ -5,10 +5,11 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.DrawableCompat;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.ViewTarget;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.liucj.common.activity.BaseActivity;
 import com.liucj.common.fragment.BaseFragment;
 import com.liucj.qchat.R;
@@ -48,19 +49,23 @@ public class LoginActivity extends BaseActivity implements AccountTrigger {
                 .commit();
     }
     private void setBgImage(){
+        // 初始化背景
         Glide.with(this)
-                .load(mCurFragment == mLoginFragment?R.drawable.bg_src_morning:R.drawable.bg_src_tianjin)
-                .centerCrop()//居中剪切
-                .into(new ViewTarget<ImageView, GlideDrawable>(mBg) {
+                .load(R.drawable.bg_src_tianjin)
+                .centerCrop() //居中剪切
+                .into(new DrawableImageViewTarget(mBg) {
                     @Override
-                    public void onResourceReady(GlideDrawable resource,
-                                                GlideAnimation<? super GlideDrawable> glideAnimation) {
-                        // 拿到glide的Drawable
-                        Drawable drawable = resource.getCurrent();
+                    protected void setResource(@Nullable Drawable resource) {
+                        if (resource == null) {
+                            super.setResource(resource);
+                            return;
+                        }
+                        // 使用适配类进行包装
+                        Drawable drawable = DrawableCompat.wrap(resource);
                         drawable.setColorFilter(UiCompat.getColor(getResources(), R.color.colorAccent),
-                                PorterDuff.Mode.SCREEN);
+                                PorterDuff.Mode.SCREEN); // 设置着色的效果和颜色，蒙板模式
                         // 设置给ImageView
-                        this.view.setImageDrawable(drawable);
+                        super.setResource(drawable);
                     }
                 });
     }

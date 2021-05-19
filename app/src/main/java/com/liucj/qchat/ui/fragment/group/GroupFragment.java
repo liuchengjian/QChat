@@ -85,8 +85,15 @@ public class GroupFragment extends PresenterFragment<GroupsContract.Presenter>
     }
 
     @Override
+    protected void onFirstInit() {
+        super.onFirstInit();
+        // 进行一次数据加载
+        mPresenter.start();
+    }
+    @Override
     public void onAdapterDataChanged() {
-
+        // 进行界面操作
+        mPlaceHolderView.triggerOkOrEmpty(mAdapter.getItemCount() > 0);
     }
 
     class ViewHolder extends BaseRecyclerAdapter.ViewHolder<Group> {

@@ -46,10 +46,8 @@
             android:layout_width="@dimen/len_32"
             android:layout_height="@dimen/len_32"
             android:layout_margin="1dp"
-            android:background="@drawable/sel_bg_clr_32"
             android:gravity="center"
             android:padding="@dimen/len_2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             tools:text="+1" />
 
     </LinearLayout>
