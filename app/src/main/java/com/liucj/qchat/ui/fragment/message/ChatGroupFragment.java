@@ -22,6 +22,7 @@ import com.liucj.factory.model.db.view.MemberUserModel;
 import com.liucj.factory.presenter.message.ChatContract;
 import com.liucj.factory.presenter.message.ChatGroupPresenter;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.activity.GroupMemberActivity;
 import com.liucj.qchat.ui.activity.PersonalActivity;
 
 import java.util.List;
@@ -157,7 +158,7 @@ public class ChatGroupFragment extends ChatFragment<Group>
                 @Override
                 public void onClick(View v) {
                     // mReceiverId 就是群的Id
-//                    GroupMemberActivity.show(getContext(), mReceiverId);
+                    GroupMemberActivity.show(getContext(), mReceiverId);
                 }
             });
         } else {
@@ -175,7 +176,7 @@ public class ChatGroupFragment extends ChatFragment<Group>
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.action_add) {
                         // mReceiverId 就是群的Id
-//                        GroupMemberActivity.showAdmin(getContext(), mReceiverId);
+                        GroupMemberActivity.showAdmin(getContext(), mReceiverId);
                         return true;
                     }
                     return false;

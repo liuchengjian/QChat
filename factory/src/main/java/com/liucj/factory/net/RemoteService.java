@@ -11,6 +11,7 @@ import com.liucj.factory.model.card.GroupMemberCard;
 import com.liucj.factory.model.card.MessageCard;
 import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.model.api.account.AccountRspModel;
+import com.liucj.factory.model.db.view.GroupMemberAddModel;
 
 import java.util.List;
 
@@ -42,9 +43,11 @@ public interface RemoteService {
      */
     @POST("account/login")
     Call<RspModel<AccountRspModel>> login(@Body LoginBean bean);
+
     // 获取联系人列表
     @GET("user/contact")
     Call<RspModel<List<UserCard>>> userContacts();
+
     // 查询某人的信息
     @GET("user/{userId}")
     Call<RspModel<UserCard>> userFind(@Path("userId") String userId);
@@ -52,6 +55,7 @@ public interface RemoteService {
     // 用户搜索的接口
     @GET("user/search/{name}")
     Call<RspModel<List<UserCard>>> userSearch(@Path("name") String name);
+
     // 用户关注接口
     @PUT("user/follow/{userId}")
     Call<RspModel<UserCard>> userFollow(@Path("userId") String userId);
@@ -67,6 +71,7 @@ public interface RemoteService {
     // 创建群
     @POST("group")
     Call<RspModel<GroupCard>> groupCreate(@Body GroupCreateModel model);
+
     // 拉取群信息
     @GET("group/{groupId}")
     Call<RspModel<GroupCard>> groupFind(@Path("groupId") String groupId);
@@ -94,6 +99,11 @@ public interface RemoteService {
     // 群搜索的接口
     @GET("group/search/{name}")
     Call<RspModel<List<GroupCard>>> groupSearch(@Path(value = "name", encoded = true) String name);
+
+    // 给群添加成员
+    @POST("group/{groupId}/member")
+    Call<RspModel<List<GroupMemberCard>>> groupMemberAdd(@Path("groupId") String groupId,
+                                                         @Body GroupMemberAddModel model);
 
 
 }

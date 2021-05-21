@@ -13,6 +13,7 @@ import com.liucj.factory.model.db.GroupMember_Table;
 import com.liucj.factory.model.db.Group_Table;
 import com.liucj.factory.model.db.User;
 import com.liucj.factory.model.db.User_Table;
+import com.liucj.factory.model.db.view.GroupMemberAddModel;
 import com.liucj.factory.model.db.view.MemberUserModel;
 import com.liucj.factory.net.Network;
 import com.liucj.factory.net.RemoteService;
@@ -191,5 +192,30 @@ public class GroupHelper {
         return call;
     }
 
+    // 网络请求进行成员添加
+    public static void addMembers(String groupId, GroupMemberAddModel model, final DataSource.Callback<List<GroupMemberCard>> callback) {
+        RemoteService service = Network.remote();
+        service.groupMemberAdd(groupId, model)
+                .enqueue(new Callback<RspModel<List<GroupMemberCard>>>() {
+                    @Override
+                    public void onResponse(Call<RspModel<List<GroupMemberCard>>> call, Response<RspModel<List<GroupMemberCard>>> response) {
+                        RspModel<List<GroupMemberCard>> rspModel = response.body();
+                        if (rspModel.success()) {
+                            List<GroupMemberCard> memberCards = rspModel.getResult();
+                            if (memberCards != null && memberCards.size() > 0) {
+                                // 进行调度显示
+                                Factory.getGroupCenter().dispatch(memberCards.toArray(new GroupMemberCard[0]));
+                                callback.onDataLoaded(memberCards);
+                            }
+                        } else {
+                            Factory.decodeRspCode(rspModel, null);
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<RspModel<List<GroupMemberCard>>> call, Throwable t) {
+                        callback.onDataNotAvailable(R.string.data_network_error);
+                    }
+                });
+    }
 }
