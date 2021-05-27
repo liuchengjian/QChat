@@ -12,13 +12,13 @@ import com.liucj.common.recycler.BaseRecyclerAdapter;
 import com.liucj.common.utils.QUtils;
 import com.liucj.common.widget.view.PortraitView;
 import com.liucj.common.widget.view.EmptyView;
-import com.liucj.factory.Application;
 import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.contact.FollowContract;
 import com.liucj.factory.presenter.contact.FollowPresenter;
 import com.liucj.factory.presenter.search.SearchContract;
 import com.liucj.factory.presenter.search.SearchUserPresenter;
+import com.liucj.qchat.App;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.activity.PersonalActivity;
 import com.liucj.qchat.ui.activity.SearchActivity;
@@ -138,7 +138,7 @@ public class SearchUserFragment extends PresenterFragment<SearchContract.Present
         @Override
         public void showError(int str) {
             // 更改当前界面状态
-            QUtils.makeText(getActivity(), Application.getInstance().getString(str));
+            QUtils.makeText(getActivity(), App.getInstance().getString(str));
             if (mFollow.getDrawable() instanceof LoadingDrawable) {
                 // 失败则停止动画，并且显示一个圆圈
 //                LoadingDrawable drawable = (LoadingDrawable) mFollow.getDrawable();

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.liucj.common.Application;
 import com.liucj.common.utils.QUtils;
-import com.liucj.factory.Application;
 import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.account.LoginContract;
 import com.liucj.factory.presenter.account.LoginPresenter;

@@ -17,6 +17,7 @@ import com.liucj.factory.utils.AccountUtil;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.fragment.PermissionsFragment;
 
+import net.qiujuer.genius.res.Resource;
 import net.qiujuer.genius.ui.compat.UiCompat;
 
 /**
@@ -24,33 +25,37 @@ import net.qiujuer.genius.ui.compat.UiCompat;
  */
 public class LaunchActivity extends BaseActivity {
 
+    // Drawable
     private ColorDrawable mBgDrawable;
     // 是否已经得到PushId
     private boolean mAlreadyGotPushReceiverId = false;
+
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_launch;
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void initWidget() {
         super.initWidget();
+
         // 拿到跟布局
         View root = findViewById(R.id.activity_launch);
         // 获取颜色
-        int color = UiCompat.getColor(getResources(), R.color.white);
+        int color = UiCompat.getColor(getResources(), R.color.colorPrimary);
         // 创建一个Drawable
         ColorDrawable drawable = new ColorDrawable(color);
-        // 设置给背景 getResources().getDrawable(R.drawable.bg_src_tianjin)
+        // 设置给背景
         root.setBackground(drawable);
         mBgDrawable = drawable;
+
     }
 
     @Override
     protected void initData() {
         super.initData();
+
         // 动画进入到50%等待PushId获取到
         // 检查等待状态
         startAnim(0.5f, this::waitPushReceiverId);
@@ -59,12 +64,14 @@ public class LaunchActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         // 判断是否已经得到推送Id，如果已经得到则进行跳转操作，
         // 在操作中检测权限状态
         if (!mAlreadyGotPushReceiverId) {
             reallySkip();
         }
     }
+
     /**
      * 等待个推框架对我们的PushId设置好值
      */
@@ -90,6 +97,7 @@ public class LaunchActivity extends BaseActivity {
         getWindow().getDecorView()
                 .postDelayed(this::waitPushReceiverId, 500);
     }
+
 
     /**
      * 在跳转之前需要把剩下的50%进行完成
@@ -124,7 +132,7 @@ public class LaunchActivity extends BaseActivity {
      */
     private void startAnim(float endProgress, final Runnable endCallback) {
         // 获取一个最终的颜色
-        int finalColor = UiCompat.getColor(getResources(), R.color.colorAccent); // UiCompat.getColor(getResources(), R.color.white);
+        int finalColor = Resource.Color.WHITE; // UiCompat.getColor(getResources(), R.color.white);
         // 运算当前进度的颜色
         ArgbEvaluator evaluator = new ArgbEvaluator();
         int endColor = (int) evaluator.evaluate(endProgress, mBgDrawable.getColor(), finalColor);
@@ -142,6 +150,7 @@ public class LaunchActivity extends BaseActivity {
         });
         valueAnimator.start();
     }
+
 
     private final Property<LaunchActivity, Object> property = new Property<LaunchActivity, Object>(Object.class, "color") {
         @Override

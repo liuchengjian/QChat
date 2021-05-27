@@ -24,6 +24,7 @@ public class NavHelper<T> {
 
     // 当前的一个选中的Tab
     private Tab<T> currentTab;
+    public Fragment mCurrentFragment;
 
     public NavHelper(Context context, int containerId,
                      FragmentManager fragmentManager,
@@ -123,6 +124,7 @@ public class NavHelper<T> {
                 ft.attach(newTab.fragment);
             }
         }
+        mCurrentFragment =newTab.fragment;
         // 提交事务
         ft.commit();
         // 通知回调
@@ -143,6 +145,9 @@ public class NavHelper<T> {
 
     private void notifyTabReselect(Tab<T> tab) {
         // TODO 二次点击Tab所做的操作
+    }
+    public Fragment getCurrentFragment(){
+        return  mCurrentFragment;
     }
 
     /**

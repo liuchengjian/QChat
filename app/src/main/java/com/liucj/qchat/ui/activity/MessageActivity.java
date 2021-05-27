@@ -20,7 +20,7 @@ public class MessageActivity extends BaseActivity {
     // 接收者Id，可以是群，也可以是人的Id
     public static final String KEY_RECEIVER_ID = "KEY_RECEIVER_ID";
     // 是否是群
-    private static final String KEY_RECEIVER_IS_GROUP = "KEY_RECEIVER_IS_GROUP";
+    public static final String KEY_RECEIVER_IS_GROUP = "KEY_RECEIVER_IS_GROUP";
 
     private String mReceiverId;
     private boolean mIsGroup;

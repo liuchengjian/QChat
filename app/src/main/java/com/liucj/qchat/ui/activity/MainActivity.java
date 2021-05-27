@@ -40,7 +40,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         NavHelper.OnTabChangedListener<Integer>{
-    private Fragment mCurFragment;
+    public static Fragment mCurFragment;
     @BindView(R.id.navigation)
     BottomNavigationView mNavigation;
 
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @BindView(R.id.im_search)
     ImageView mSearch;
 
-    private NavHelper<Integer> mNavHelper;
+    public static NavHelper<Integer> mNavHelper;
 
     @SuppressLint("NewApi")
     @OnClick(R.id.im_search)
@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void initWidget() {
         super.initWidget();
-        mCurFragment = new MyFragment();
+
         //解决BottomNavigation四个以上item动画问题
 //        BottomNavigationViewHelper.disableShiftMode(mNavigation);
         // 初始化底部辅助工具类
@@ -114,7 +114,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 .add(R.id.action_group, new NavHelper.Tab<>(GroupFragment.class, R.string.action_group))
                 .add(R.id.action_contact, new NavHelper.Tab<>(ContactFragment.class, R.string.action_contact))
                 .add(R.id.action_my, new NavHelper.Tab<>(MyFragment.class, R.string.action_my));
-
 
         // 添加对底部按钮点击的监听
         mNavigation.setOnNavigationItemSelectedListener(this);
@@ -151,7 +150,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 .centerCrop()
                 .into(mPortrait);
         // 初始化头像加载
-//        mPortrait.setup(Glide.with(this), AccountUtil.getUser().getPortrait());
+        mPortrait.setup(Glide.with(this), AccountUtil.getUser().getPortrait());
     }
 
     @OnClick(R.id.im_portrait)

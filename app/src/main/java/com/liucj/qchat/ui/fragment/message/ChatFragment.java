@@ -127,7 +127,10 @@ public abstract class ChatFragment<InitModel>
         initEditContent();
 
         // RecyclerView基本设置
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        manager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(manager);
         mAdapter = new Adapter();
         mRecyclerView.setAdapter(mAdapter);
         // 添加适配器监听器，进行点击的实现
@@ -154,6 +157,9 @@ public abstract class ChatFragment<InitModel>
     @Override
     public void onAdapterDataChanged() {
         //不用实现，站位
+        //将RecyclerView定位到最后一行
+        mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+//        mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
     }
 
     @OnClick(R.id.btn_submit)
@@ -187,6 +193,7 @@ public abstract class ChatFragment<InitModel>
     }
     //  给界面的Appbar设置一个监听，得到关闭与打开的时候的进度
     private void initAppbar() {
+        mAppBarLayout.setExpanded(false);
         mAppBarLayout.addOnOffsetChangedListener(this);
     }
 

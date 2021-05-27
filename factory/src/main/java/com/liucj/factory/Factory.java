@@ -1,14 +1,22 @@
 package com.liucj.factory;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import androidx.annotation.StringRes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.liucj.common.Application;
 import com.liucj.common.factory.data.DataSource;
 import com.liucj.common.utils.QUtils;
 import com.liucj.factory.model.card.GroupCard;
+import com.liucj.factory.model.card.GroupMemberCard;
 import com.liucj.factory.model.card.MessageCard;
 import com.liucj.factory.model.card.UserCard;
 import com.liucj.factory.model.PushModel;
@@ -23,6 +31,8 @@ import com.liucj.factory.utils.AccountUtil;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -212,6 +222,7 @@ public class Factory {
                 case PushModel.ENTITY_TYPE_MESSAGE: {
                     // 普通消息
                     MessageCard card = getGson().fromJson(entity.content, MessageCard.class);
+
                     getMessageCenter().dispatch(card);
                     break;
                 }
@@ -233,11 +244,11 @@ public class Factory {
                 case PushModel.ENTITY_TYPE_ADD_GROUP_MEMBERS:
                 case PushModel.ENTITY_TYPE_MODIFY_GROUP_MEMBERS: {
                     // 群成员变更, 回来的是一个群成员的列表
-//                    Type type = new TypeToken<List<GroupMemberCard>>() {
-//                    }.getType();
-//                    List<GroupMemberCard> card = getGson().fromJson(entity.content, type);
-//                    // 把数据集合丢到数据中心处理
-//                    getGroupCenter().dispatch(card.toArray(new GroupMemberCard[0]));
+                    Type type = new TypeToken<List<GroupMemberCard>>() {
+                    }.getType();
+                    List<GroupMemberCard> card = getGson().fromJson(entity.content, type);
+                    // 把数据集合丢到数据中心处理
+                    getGroupCenter().dispatch(card.toArray(new GroupMemberCard[0]));
                     break;
                 }
                 case PushModel.ENTITY_TYPE_EXIT_GROUP_MEMBERS: {

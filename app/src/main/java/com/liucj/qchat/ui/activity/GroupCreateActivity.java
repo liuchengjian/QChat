@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,15 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.liucj.common.activity.BaseActivity;
-import com.liucj.common.activity.ToolbarActivity;
 import com.liucj.common.recycler.BaseRecyclerAdapter;
 import com.liucj.common.utils.QUtils;
 import com.liucj.common.widget.view.PortraitView;
-import com.liucj.factory.Application;
 import com.liucj.factory.presenter.PresenterToolbarActivity;
 import com.liucj.factory.presenter.group.GroupCreateContract;
 import com.liucj.factory.presenter.group.GroupCreatePresenter;
+import com.liucj.qchat.App;
 import com.liucj.qchat.R;
 import com.liucj.qchat.ui.fragment.GalleryFragment;
 import com.yalantis.ucrop.UCrop;
@@ -93,7 +90,7 @@ public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateCon
                         options.setCompressionQuality(96);
 
                         // 得到头像的缓存地址
-                        File dPath = Application.getPortraitTmpFile();
+                        File dPath = App.getPortraitTmpFile();
 
                         // 发起剪切
                         UCrop.of(Uri.fromFile(new File(path)), Uri.fromFile(dPath))
