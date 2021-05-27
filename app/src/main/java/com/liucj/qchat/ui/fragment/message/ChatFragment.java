@@ -1,6 +1,7 @@
 package com.liucj.qchat.ui.fragment.message;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -27,6 +28,7 @@ import com.liucj.factory.presenter.PresenterFragment;
 import com.liucj.factory.presenter.message.ChatContract;
 import com.liucj.factory.utils.AccountUtil;
 import com.liucj.qchat.R;
+import com.liucj.qchat.ui.activity.MainActivity;
 import com.liucj.qchat.ui.activity.MessageActivity;
 
 import net.qiujuer.genius.ui.compat.UiCompat;
@@ -127,10 +129,10 @@ public abstract class ChatFragment<InitModel>
         initEditContent();
 
         // RecyclerView基本设置
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setStackFromEnd(true);
-        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+//        manager.setStackFromEnd(true);
+//        mRecyclerView.setLayoutManager(manager);
         mAdapter = new Adapter();
         mRecyclerView.setAdapter(mAdapter);
         // 添加适配器监听器，进行点击的实现
@@ -187,7 +189,11 @@ public abstract class ChatFragment<InitModel>
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra("performIdentifierAction",2);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+//                getActivity().finish();
             }
         });
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 
 import com.liucj.common.activity.BaseActivity;
 import com.liucj.common.fragment.BaseFragment;
@@ -101,4 +102,19 @@ public class MessageActivity extends BaseActivity {
                 .add(R.id.lay_container, fragment)
                 .commit();
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("performIdentifierAction",2);
+            startActivity(intent);
+//            finish();
+         /*R.anim.enter:新的Activity进入时的动画
+        R.anim.edit：旧的Activity出去时的动画*/
+//            overridePendingTransition(R.anim.enter, R.anim.edit);
+        }
+        return true;
+    }
+
 }
