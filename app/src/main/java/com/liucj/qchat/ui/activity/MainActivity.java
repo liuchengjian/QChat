@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -138,6 +139,16 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 });
     }
 
+    @Override
+    protected boolean initArgs(Bundle bundle) {
+        if (AccountUtil.isComplete()) {
+            // 判断用户信息是否完全，完全则走正常流程
+            return super.initArgs(bundle);
+        } else {
+            UserActivity.show(this);
+            return false;
+        }
+    }
     @Override
     protected void initData() {
         super.initData();

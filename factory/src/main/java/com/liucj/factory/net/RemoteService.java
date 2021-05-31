@@ -2,6 +2,7 @@ package com.liucj.factory.net;
 
 
 import com.liucj.factory.model.RspModel;
+import com.liucj.factory.model.api.account.UserUpdateModel;
 import com.liucj.factory.model.api.group.GroupCreateModel;
 import com.liucj.factory.model.api.account.LoginBean;
 import com.liucj.factory.model.api.message.MsgCreateModel;
@@ -47,6 +48,10 @@ public interface RemoteService {
     // 获取联系人列表
     @GET("user/contact")
     Call<RspModel<List<UserCard>>> userContacts();
+
+    // 用户更新的接口
+    @PUT("user")
+    Call<RspModel<UserCard>> userUpdate(@Body UserUpdateModel model);
 
     // 查询某人的信息
     @GET("user/{userId}")
